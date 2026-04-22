@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATC-IB | Meubles Sur Mesure en Teck Béninois — Depuis 2006</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --bois: #8B5E3C;
+    --bois-dark: #6B4226;
+    --bois-light: #A97C50;
+    --or: #C9A84C;
+    --or-light: #E5C97A;
+    --creme: #FAF3E0;
+    --creme-dark: #F0E6C8;
+    --vert: #2D5016;
+    --vert-light: #3D6B20;
+    --blanc: #FFFFFF;
+    --noir: #1A1209;
+    --gris: #6B6055;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--creme);
+    color: var(--noir);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 5%;
+    background: rgba(26,18,9,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    transition: all 0.4s ease;
+  }
+  nav.scrolled { padding: 12px 5%; }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--or);
+    letter-spacing: 2px;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--blanc); font-weight: 300; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--or); }
+  .nav-cta {
+    background: var(--or); color: var(--noir) !important;
+    padding: 10px 24px; border-radius: 2px;
+    font-weight: 700; letter-spacing: 1px;
+  }
+  .nav-cta:hover { background: var(--or-light) !important; color: var(--noir) !important; }
+  .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+  .hamburger span { width: 25px; height: 2px; background: var(--or); transition: all 0.3s; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1A1209 0%, #2D1E0F 40%, #3D2A14 70%, #1A1209 100%);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+  }
+  .hero-texture {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-glow {
+    position: absolute; width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    top: 50%; left: 60%; transform: translate(-50%,-50%);
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 5%; max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    padding-top: 100px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.4);
+    padding: 6px 16px; border-radius: 50px;
+    color: var(--or); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 24px; font-weight: 700;
+  }
+  .hero-badge i { font-size: 0.7rem; }
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 900; line-height: 1.1;
+    color: var(--blanc);
+    margin-bottom: 24px;
+  }
+  .hero-headline .accent { color: var(--or); display: block; font-style: italic; }
+  .hero-sub {
+    font-size: 1.1rem; color: rgba(255,255,255,0.7);
+    line-height: 1.7; margin-bottom: 40px; font-weight: 300;
+  }
+  .hero-cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, var(--or) 0%, var(--or-light) 100%);
+    color: var(--noir); padding: 16px 36px; border-radius: 2px;
+    font-weight: 700; font-size: 0.95rem; letter-spacing: 1.5px; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s; border: none; cursor: pointer;
+    box-shadow: 0 8px 30px rgba(201,168,76,0.35);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(201,168,76,0.5); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid rgba(255,255,255,0.4); color: var(--blanc);
+    padding: 16px 36px; border-radius: 2px;
+    font-weight: 400; font-size: 0.95rem; letter-spacing: 1px;
+    text-decoration: none; transition: all 0.3s;
+  }
+  .btn-secondary:hover { border-color: var(--or); color: var(--or); }
+  .hero-urgency {
+    margin-top: 28px; display: flex; align-items: center; gap: 10px;
+    color: rgba(255,255,255,0.55); font-size: 0.82rem;
+  }
+  .hero-urgency .dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.3)} }
+
+  .hero-visual {
+    position: relative; display: flex; justify-content: center; align-items: center;
+  }
+  .hero-img-frame {
+    width: 100%; max-width: 480px; aspect-ratio: 3/4;
+    background: linear-gradient(145deg, #5D3A1A 0%, #8B5E3C 40%, #6B4226 70%, #4A2C10 100%);
+    border-radius: 4px; position: relative; overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6), inset 0 0 60px rgba(201,168,76,0.1);
+  }
+  .hero-img-frame::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      15deg, transparent 0px, transparent 8px,
+      rgba(201,168,76,0.03) 8px, rgba(201,168,76,0.03) 10px
+    );
+  }
+  .hero-img-content {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 32px;
+    background: linear-gradient(to top, rgba(26,18,9,0.8) 0%, transparent 60%);
+  }
+  .hero-img-tag {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    color: var(--or); font-size: 1.1rem; margin-bottom: 8px;
+  }
+  .hero-img-desc { color: rgba(255,255,255,0.7); font-size: 0.8rem; letter-spacing: 1px; }
+  .hero-wood-icon {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-52%);
+    font-size: 8rem; color: rgba(201,168,76,0.15);
+  }
+  .hero-stat-chips {
+    position: absolute; right: -20px; top: 20%;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .stat-chip {
+    background: rgba(26,18,9,0.9); border: 1px solid rgba(201,168,76,0.3);
+    padding: 12px 18px; border-radius: 4px;
+    text-align: center; backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+  .stat-chip .num { font-family: 'Playfair Display', serif; color: var(--or); font-size: 1.6rem; font-weight: 900; display: block; }
+  .stat-chip .lbl { color: rgba(255,255,255,0.6); font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* ── TRUST BAR ── */
+  #trust {
+    background: var(--bois-dark);
+    padding: 20px 5%;
+    border-top: 2px solid var(--or);
+    border-bottom: 2px solid var(--or);
+  }
+  .trust-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: center; align-items: center;
+    gap: 0; flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--creme); font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;
+    padding: 8px 30px; font-weight: 700;
+  }
+  .trust-item i { color: var(--or); font-size: 1rem; }
+  .trust-divider { width: 1px; height: 30px; background: rgba(201,168,76,0.3); }
+
+  /* ── PROBLEM / SOLUTION ── */
+  #probleme {
+    padding: 100px 5%;
+    background: var(--creme);
+  }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block; color: var(--or); font-size: 0.75rem;
+    letter-spacing: 3px; text-transform: uppercase; font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700; line-height: 1.2; color: var(--noir);
+    margin-bottom: 24px;
+  }
+  .section-title .italic { font-style: italic; color: var(--bois); }
+  .section-lead { font-size: 1.1rem; color: var(--gris); line-height: 1.8; max-width: 600px; margin-bottom: 50px; }
+
+  .pb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .pb-list { display: flex; flex-direction: column; gap: 20px; }
+  .pb-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 20px; background: var(--blanc);
+    border-left: 4px solid var(--bois); border-radius: 0 4px 4px 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .pb-item.solution { border-left-color: var(--vert); }
+  .pb-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .pb-icon.prob { background: rgba(139,94,60,0.12); color: var(--bois); }
+  .pb-icon.sol { background: rgba(45,80,22,0.12); color: var(--vert); }
+  .pb-text h4 { font-family: 'Playfair Display', serif; font-size: 1rem; margin-bottom: 4px; color: var(--noir); }
+  .pb-text p { font-size: 0.88rem; color: var(--gris); line-height: 1.6; }
+  .pb-visual {
+    background: linear-gradient(145deg, #8B5E3C 0%, #5D3A1A 100%);
+    border-radius: 4px; padding: 48px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; min-height: 400px;
+    position: relative; overflow: hidden;
+  }
+  .pb-visual::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, transparent 0px, transparent 15px, rgba(201,168,76,0.06) 15px, rgba(201,168,76,0.06) 16px);
+  }
+  .pb-visual-icon { font-size: 4rem; color: rgba(201,168,76,0.6); margin-bottom: 24px; position: relative; }
+  .pb-visual-text { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--creme); line-height: 1.4; position: relative; }
+  .pb-visual-text span { color: var(--or); font-style: italic; }
+
+  /* ── COLLECTIONS ── */
+  #collections {
+    padding: 100px 5%;
+    background: var(--noir);
+  }
+  #collections .section-title { color: var(--creme); }
+  #collections .section-tag { color: var(--or); }
+  #collections .section-lead { color: rgba(255,255,255,0.6); }
+  .coll-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+  .coll-card {
+    border-radius: 4px; overflow: hidden; position: relative;
+    cursor: pointer; group: true;
+    transition: transform 0.4s ease;
+  }
+  .coll-card:hover { transform: translateY(-8px); }
+  .coll-card-bg {
+    height: 380px; position: relative;
+    display: flex; align-items: flex-end;
+  }
+  .coll-card-bg.chambre {
+    background: linear-gradient(160deg, #6B4226 0%, #3D2A14 50%, #2A1A0A 100%);
+  }
+  .coll-card-bg.bureau {
+    background: linear-gradient(160deg, #2D5016 0%, #1A3008 50%, #0F1E04 100%);
+  }
+  .coll-card-bg.outdoor {
+    background: linear-gradient(160deg, #8B5E3C 0%, #5D3A1A 50%, #3D2510 100%);
+  }
+  .coll-card-icon {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-55%);
+    font-size: 5rem; color: rgba(255,255,255,0.08);
+  }
+  .coll-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);
+  }
+  .coll-card-content {
+    position: relative; padding: 28px; z-index: 2; width: 100%;
+  }
+  .coll-tag {
+    display: inline-block; background: var(--or); color: var(--noir);
+    font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 1px; font-weight: 700; margin-bottom: 10px;
+  }
+  .coll-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--blanc); margin-bottom: 8px; }
+  .coll-desc { font-size: 0.82rem; color: rgba(255,255,255,0.65); line-height: 1.5; margin-bottom: 18px; }
+  .coll-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--or); font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase;
+    text-decoration: none; font-weight: 700; transition: gap 0.3s;
+  }
+  .coll-card:hover .coll-btn { gap: 14px; }
+  .coll-features {
+    display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px;
+  }
+  .coll-feat { font-size: 0.72rem; color: rgba(255,255,255,0.5); display: flex; align-items: center; gap: 4px; }
+  .coll-feat i { color: var(--or); }
+
+  /* ── STORY ── */
+  #story {
+    padding: 100px 5%;
+    background: var(--creme-dark);
+    position: relative; overflow: hidden;
+  }
+  #story::before {
+    content: '"'; position: absolute; top: -40px; left: 2%;
+    font-family: 'Playfair Display', serif; font-size: 20rem; font-weight: 900;
+    color: rgba(139,94,60,0.06); line-height: 1; pointer-events: none;
+  }
+  .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .story-visual-stack { position: relative; height: 500px; }
+  .story-card {
+    position: absolute; border-radius: 4px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+  .story-card.main {
+    width: 75%; height: 380px; top: 0; left: 0;
+    background: linear-gradient(145deg, #8B5E3C 0%, #5D3A1A 60%, #3D2A14 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .story-card.accent {
+    width: 55%; height: 220px; bottom: 0; right: 0;
+    background: linear-gradient(145deg, #2D5016 0%, #1A3008 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .story-card i { font-size: 5rem; color: rgba(255,255,255,0.12); }
+  .story-card-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+    padding: 20px; color: var(--creme);
+    font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem;
+  }
+  .story-year-badge {
+    position: absolute; top: -16px; right: -16px;
+    width: 90px; height: 90px; border-radius: 50%;
+    background: var(--or); display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(201,168,76,0.4);
+  }
+  .story-year-badge .y { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; color: var(--noir); line-height: 1; }
+  .story-year-badge .since { font-size: 0.55rem; letter-spacing: 1px; color: var(--bois-dark); text-transform: uppercase; font-weight: 700; }
+
+  .story-content blockquote {
+    font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic;
+    color: var(--bois); border-left: 3px solid var(--or);
+    padding-left: 24px; margin: 28px 0; line-height: 1.7;
+  }
+  .story-content p { color: var(--gris); line-height: 1.85; margin-bottom: 18px; font-size: 0.98rem; }
+  .story-founder {
+    display: flex; align-items: center; gap: 16px; margin-top: 36px;
+    padding: 20px; background: var(--blanc); border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  .founder-avatar {
+    width: 60px; height: 60px; border-radius: 50%;
+    background: linear-gradient(135deg, #8B5E3C, #C9A84C);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--blanc); font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700; flex-shrink: 0;
+  }
+  .founder-info { flex: 1; }
+  .founder-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--noir); }
+  .founder-role { font-size: 0.78rem; color: var(--gris); letter-spacing: 1px; text-transform: uppercase; }
+  .founder-sign { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; color: var(--bois); margin-left: auto; }
+
+  /* ── TESTIMONIALS ── */
+  #temoignages {
+    padding: 100px 5%;
+    background: var(--blanc);
+  }
+  .testi-header { text-align: center; margin-bottom: 60px; }
+  .stars { color: var(--or); font-size: 1.1rem; margin-bottom: 16px; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+  .testi-card {
+    background: var(--creme); padding: 36px;
+    border-radius: 4px; position: relative;
+    border-bottom: 3px solid var(--or);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .testi-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+  .testi-quote-icon {
+    color: var(--or); font-size: 2rem; margin-bottom: 20px; opacity: 0.6;
+  }
+  .testi-text {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 1rem; color: var(--noir); line-height: 1.75; margin-bottom: 28px;
+  }
+  .testi-author { display: flex; align-items: center; gap: 14px; }
+  .testi-avatar {
+    width: 50px; height: 50px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700;
+    color: var(--blanc); flex-shrink: 0;
+  }
+  .testi-avatar.a1 { background: linear-gradient(135deg,#8B5E3C,#C9A84C); }
+  .testi-avatar.a2 { background: linear-gradient(135deg,#2D5016,#6B9B3A); }
+  .testi-avatar.a3 { background: linear-gradient(135deg,#6B4226,#8B5E3C); }
+  .testi-name { font-weight: 700; font-size: 0.92rem; color: var(--noir); }
+  .testi-city { font-size: 0.78rem; color: var(--gris); }
+  .testi-stars { color: var(--or); font-size: 0.75rem; }
+  .testi-badge {
+    position: absolute; top: 20px; right: 20px;
+    background: rgba(201,168,76,0.15); color: var(--or);
+    font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 50px; font-weight: 700;
+  }
+
+  /* ── TECK SECTION ── */
+  #teck {
+    padding: 100px 5%;
+    background: linear-gradient(135deg, #2D5016 0%, #1A3008 100%);
+    position: relative; overflow: hidden;
+  }
+  #teck::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      60deg, transparent 0px, transparent 20px,
+      rgba(255,255,255,0.02) 20px, rgba(255,255,255,0.02) 21px
+    );
+  }
+  #teck .section-title { color: var(--creme); }
+  #teck .section-tag { color: var(--or-light); }
+  .teck-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .teck-features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .teck-feat {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    padding: 24px; border-radius: 4px; transition: background 0.3s;
+  }
+  .teck-feat:hover { background: rgba(255,255,255,0.1); }
+  .teck-feat-icon { font-size: 1.8rem; color: var(--or); margin-bottom: 12px; }
+  .teck-feat h4 { color: var(--creme); font-family: 'Playfair Display', serif; font-size: 1rem; margin-bottom: 6px; }
+  .teck-feat p { color: rgba(255,255,255,0.55); font-size: 0.82rem; line-height: 1.6; }
+  .teck-visual {
+    background: linear-gradient(145deg, rgba(139,94,60,0.3), rgba(93,58,26,0.5));
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px; padding: 48px; text-align: center;
+    position: relative;
+  }
+  .teck-big-num { font-family: 'Playfair Display', serif; font-size: 6rem; font-weight: 900; color: var(--or); line-height: 1; opacity: 0.3; }
+  .teck-claim { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--creme); line-height: 1.4; margin: 16px 0; }
+  .teck-sub { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+  .made-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--or); color: var(--noir);
+    padding: 10px 20px; border-radius: 2px; margin-top: 24px;
+    font-weight: 700; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase;
+  }
+
+  /* ── PROCESS ── */
+  #processus {
+    padding: 100px 5%;
+    background: var(--creme);
+  }
+  .process-header { text-align: center; margin-bottom: 70px; }
+  .process-steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; position: relative; }
+  .process-steps::before {
+    content: ''; position: absolute; top: 55px; left: 17%; right: 17%; height: 2px;
+    background: linear-gradient(to right, var(--or), var(--bois), var(--or));
+    z-index: 0;
+  }
+  .process-step { text-align: center; padding: 0 32px; position: relative; }
+  .process-num-wrap { position: relative; display: inline-flex; margin-bottom: 28px; z-index: 1; }
+  .process-num {
+    width: 70px; height: 70px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--bois) 0%, var(--bois-dark) 100%);
+    color: var(--blanc); font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(139,94,60,0.4);
+    position: relative; z-index: 1;
+  }
+  .process-ring {
+    position: absolute; inset: -6px; border-radius: 50%;
+    border: 2px solid rgba(201,168,76,0.4);
+  }
+  .process-step h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--noir); margin-bottom: 12px; }
+  .process-step p { font-size: 0.88rem; color: var(--gris); line-height: 1.7; }
+  .process-step .step-icon { font-size: 1.5rem; color: var(--or); margin-bottom: 12px; }
+
+  /* ── CTA FINAL ── */
+  #cta-final {
+    padding: 100px 5%;
+    background: linear-gradient(135deg, #1A1209 0%, #2D1E0F 50%, #1A1209 100%);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  #cta-final::before {
+    content: ''; position: absolute; width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    pointer-events: none;
+  }
+  #cta-final .section-title { color: var(--creme); }
+  #cta-final .section-tag { color: var(--or); }
+  .cta-lead { font-size: 1.1rem; color: rgba(255,255,255,0.65); max-width: 550px; margin: 0 auto 50px; line-height: 1.8; }
+  .cta-urgency-bar {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.3);
+    padding: 10px 24px; border-radius: 50px; margin-bottom: 36px;
+    color: var(--or); font-size: 0.82rem; letter-spacing: 1px;
+  }
+  .cta-urgency-bar i { animation: pulse 1.5s infinite; }
+
+  .contact-form {
+    max-width: 580px; margin: 0 auto;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px; padding: 48px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block; color: rgba(255,255,255,0.6); font-size: 0.75rem;
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; font-weight: 700;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15); border-radius: 2px;
+    padding: 14px 16px; color: var(--blanc); font-family: 'Lato', sans-serif; font-size: 0.9rem;
+    transition: border-color 0.3s;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none; border-color: var(--or);
+  }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .form-group select option { background: #1A1209; color: var(--creme); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .guarantee-note {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    color: rgba(255,255,255,0.45); font-size: 0.78rem; margin-top: 20px;
+  }
+  .guarantee-note i { color: var(--or); }
+
+  /* ── FAQ ── */
+  #faq {
+    padding: 100px 5%;
+    background: var(--blanc);
+  }
+  .faq-header { text-align: center; margin-bottom: 60px; }
+  .faq-grid { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+  .faq-item {
+    border: 1px solid rgba(139,94,60,0.2); border-radius: 4px;
+    overflow: hidden; transition: border-color 0.3s;
+  }
+  .faq-item.open { border-color: var(--or); }
+  .faq-question {
+    padding: 22px 28px; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--noir);
+    transition: background 0.3s;
+  }
+  .faq-item.open .faq-question { background: rgba(139,94,60,0.06); }
+  .faq-question:hover { background: rgba(139,94,60,0.04); }
+  .faq-icon { color: var(--bois); transition: transform 0.3s; flex-shrink: 0; margin-left: 16px; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--or); }
+  .faq-answer {
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s;
+    padding: 0 28px; color: var(--gris); font-size: 0.92rem; line-height: 1.8;
+  }
+  .faq-item.open .faq-answer { max-height: 300px; padding: 0 28px 22px; }
+
+  /* ── GALLERIES / FOOTER ── */
+  #footer {
+    background: var(--noir);
+    padding: 70px 5% 30px;
+  }
+  .footer-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .footer-brand .nav-logo { display: block; margin-bottom: 18px; font-size: 1.3rem; }
+  .footer-desc { color: rgba(255,255,255,0.5); font-size: 0.88rem; line-height: 1.7; margin-bottom: 24px; }
+  .social-links { display: flex; gap: 12px; }
+  .social-link {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.6); text-decoration: none;
+    transition: all 0.3s;
+  }
+  .social-link:hover { border-color: var(--or); color: var(--or); }
+  .footer-col h4 {
+    font-family: 'Playfair Display', serif; color: var(--creme);
+    font-size: 0.95rem; margin-bottom: 20px;
+    padding-bottom: 10px; border-bottom: 1px solid rgba(201,168,76,0.3);
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--or); }
+  .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
+  .footer-contact-item i { color: var(--or); font-size: 0.9rem; margin-top: 2px; flex-shrink: 0; }
+  .footer-contact-item span { color: rgba(255,255,255,0.55); font-size: 0.82rem; line-height: 1.5; }
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 28px; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom p { color: rgba(255,255,255,0.3); font-size: 0.78rem; }
+  .footer-bottom a { color: var(--or); text-decoration: none; }
+
+  /* ── FLOATING WHATSAPP ── */
+  .float-wa {
+    position: fixed; bottom: 30px; right: 30px; z-index: 999;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366; color: var(--blanc);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; text-decoration: none;
+    box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+    transition: transform 0.3s;
+    animation: float 3s ease-in-out infinite;
+  }
+  .float-wa:hover { transform: scale(1.1); }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .hero-content { grid-template-columns: 1fr; text-align: center; }
+    .hero-visual { display: none; }
+    .hero-cta-group { justify-content: center; }
+    .hero-urgency { justify-content: center; }
+    .pb-grid, .story-grid, .teck-grid { grid-template-columns: 1fr; }
+    .coll-grid { grid-template-columns: 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .process-steps::before { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(26,18,9,0.98); padding: 20px 5%; border-top: 1px solid rgba(201,168,76,0.2); }
+    .hamburger { display: flex; }
+    .trust-inner { flex-direction: column; gap: 8px; }
+    .trust-divider { width: 40px; height: 1px; }
+    .teck-features { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-stat-chips { display: none; }
+  }
+
+  /* ── COUNTDOWN ── */
+  .countdown-bar {
+    background: var(--bois-dark); text-align: center;
+    padding: 12px 5%; color: var(--creme); font-size: 0.82rem; letter-spacing: 1px;
+  }
+  .countdown-bar strong { color: var(--or); font-size: 1rem; }
+  #countdown { display: inline-flex; gap: 6px; align-items: center; font-size: 1rem; font-weight: 700; color: var(--or); }
+</style>
+</head>
+<body>
+
+<!-- COUNTDOWN -->
+<div class="countdown-bar">
+  🎯 Offre spéciale : <strong>-15% sur votre première commande</strong> — Expire dans <span id="countdown">00:00:00</span>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">ATC<span>-IB</span></a>
+  <ul class="nav-links" id="navlinks">
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#story">Notre Histoire</a></li>
+    <li><a href="#temoignages">Avis Clients</a></li>
+    <li><a href="#teck">Le Teck</a></li>
+    <li><a href="#processus">Commande</a></li>
+    <li><a href="#cta-final" class="nav-cta">Devis Gratuit</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge reveal"><i class="fas fa-leaf"></i> Artisanat béninois depuis 2006</div>
+      <h1 class="hero-headline reveal">
+        Votre intérieur mérite
+        <span class="accent">d'être exceptionnel.</span>
+      </h1>
+      <p class="hero-sub reveal">
+        Des meubles sur mesure en teck 100% béninois, façonnés à la main par des artisans d'exception.
+        Transformez chaque pièce en chef-d'œuvre qui vous ressemble.
+      </p>
+      <div class="hero-cta-group reveal">
+        <a href="#cta-final" class="btn-primary">
+          <i class="fas fa-pencil-ruler"></i> Obtenir mon devis gratuit
+        </a>
+        <a href="#collections" class="btn-secondary">
+          <i class="fas fa-eye"></i> Voir les collections
+        </a>
+      </div>
+      <div class="hero-urgency reveal">
+        <span class="dot"></span>
+        <span>12 commandes en cours cette semaine — Places limitées pour livraison rapide</span>
+      </div>
+    </div>
+    <div class="hero-visual reveal-right">
+      <div class="hero-img-frame">
+        <div class="hero-wood-icon"><i class="fas fa-tree"></i></div>
+        <div class="hero-img-content">
+          <div class="hero-img-tag">Collection Prestige 2025</div>
+          <div class="hero-img-desc">TECK BÉNINOIS • SUR MESURE • UNIQUE</div>
+        </div>
+      </div>
+      <div class="hero-stat-chips">
+        <div class="stat-chip">
+          <span class="num">18+</span>
+          <span class="lbl">Ans d'expertise</span>
+        </div>
+        <div class="stat-chip">
+          <span class="num">5</span>
+          <span class="lbl">Galeries</span>
+        </div>
+        <div class="stat-chip">
+          <span class="num">100%</span>
+          <span class="lbl">Sur mesure</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div id="trust">
+  <div class="trust-inner">
+    <div class="trust-item"><i class="fas fa-award"></i> 18 ans d'expérience</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><i class="fas fa-store"></i> 5 galeries au Bénin</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><i class="fas fa-flag"></i> 100% Made in Bénin</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><i class="fas fa-ruler-combined"></i> 100% Sur mesure</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><i class="fas fa-shield-alt"></i> Satisfaction garantie</div>
+  </div>
+</div>
+
+<!-- PROBLÈME / SOLUTION -->
+<section id="probleme">
+  <div class="section-inner">
+    <div class="pb-grid">
+      <div class="reveal-left">
+        <div class="section-tag">Le problème que vous ressentez</div>
+        <h2 class="section-title">Votre intérieur vous <span class="italic">laisse indifférent ?</span></h2>
+        <p class="section-lead">Vous rentrez chez vous et rien ne vous inspire. Vos meubles sont fonctionnels, mais sans âme. Vous méritez mieux.</p>
+        <div class="pb-list">
+          <div class="pb-item">
+            <div class="pb-icon prob"><i class="fas fa-times"></i></div>
+            <div class="pb-text">
+              <h4>Des meubles produits en masse, sans caractère</h4>
+              <p>Identiques à des milliers d'autres foyers. Aucune identité, aucune histoire.</p>
+            </div>
+          </div>
+          <div class="pb-item">
+            <div class="pb-icon prob"><i class="fas fa-times"></i></div>
+            <div class="pb-text">
+              <h4>Des dimensions qui ne s'adaptent pas à votre espace</h4>
+              <p>Trop grand, trop petit, jamais exactement ce qu'il vous faut.</p>
+            </div>
+          </div>
+          <div class="pb-item">
+            <div class="pb-icon prob"><i class="fas fa-times"></i></div>
+            <div class="pb-text">
+              <h4>Une qualité qui se dégrade après 2 ans</h4>
+              <p>Vous rachetez, vous réparez. Un cycle épuisant et coûteux.</p>
+            </div>
+          </div>
+          <div class="pb-item solution">
+            <div class="pb-icon sol"><i class="fas fa-check"></i></div>
+            <div class="pb-text">
+              <h4>ATC-IB crée votre meuble unique, pour la vie</h4>
+              <p>Sur mesure, en teck massif béninois — conçu pour durer des décennies et raconter votre histoire.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pb-visual reveal-right">
+        <div class="pb-visual-icon"><i class="fas fa-couch"></i></div>
+        <div class="pb-visual-text">
+          Chaque meuble est<br><span>votre signature</span><br>dans ce monde.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section id="collections">
+  <div class="section-inner">
+    <div class="reveal" style="margin-bottom:50px;">
+      <div class="section-tag">Nos Collections</div>
+      <h2 class="section-title" style="color:var(--creme);">Des univers façonnés<br><span class="italic">pour vous</span></h2>
+      <p class="section-lead">Chaque collection naît d'une conversation avec vous. Vos envies, votre espace, votre style — notre savoir-faire.</p>
+    </div>
+    <div class="coll-grid">
+      <div class="coll-card reveal">
+        <div class="coll-card-bg chambre">
+          <div class="coll-card-icon"><i class="fas fa-bed"></i></div>
+          <div class="coll-card-overlay"></div>
+          <div class="coll-card-content">
+            <div class="coll-tag">Collection Chambre</div>
+            <h3 class="coll-title">L'Intimité Royale</h3>
+            <p class="coll-desc">Têtes de lit sculptées, armoires enveloppantes, commodes raffinées. Votre chambre devient un sanctuaire de luxe.</p>
+            <div class="coll-features">
+              <span class="coll-feat"><i class="fas fa-check-circle"></i> Lits sur mesure</span>
+              <span class="coll-feat"><i class="fas fa-check-circle"></i> Armoires encastrées</span>
+              <span class="coll-feat"><i class="fas fa-check-circle"></i> Tables de nuit</span>
+            </div>
+            <a href="#cta-final" class="coll-btn">Demander un devis <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="coll-card reveal" style="transition-delay:0.15s">
+        <div class="coll-card-bg bureau">
+          <div class="coll-card-icon"><i class="fas fa-briefcase"></i></div>
+          <div class="coll-card-overlay"></div>
+          <div class="coll-card-content">
+            <div class="coll-tag">Collection Bureau</div>
+            <h3 class="coll-title">L'Excellence Professionnelle</h3>
+            <p class="coll-desc">Bureaux directoriaux, bibliothèques imposantes, meubles de réunion. Inspirez le respect à chaque regard.</p>
+            <div class="coll-features">
+              <span class="coll-feat"><i class="fas fa-check-circle"></i> Bureaux executive</span>
+              <span class="coll-feat"><i class="fas fa-check-circle"></i> Bibliothèques</span>
+              <span class="coll-feat"><i class="fas fa-check-circle"></i> Rangements</span>
+            </div>
+            <a href="#cta-final" class="coll-btn">Demander un devis <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="coll-card reveal" style="transition-delay:0.3s">
+        <div class="coll-card-bg outdoor">
+          <div class="coll-card-icon"><i class="fas fa-tree"></i></div>
+          <div class="coll-card-overlay"></div>
+          <div class="coll-card-content">
+            <div class="coll-tag">Collection Outdoor</div>
+            <h3 class="coll-title">La Nature Sublimée</h3>
+            <p class="coll-desc">Salons de jardin, pergolas, mobilier de piscine. Le teck résiste aux éléments et embellit avec le temps.</p>
+            <div class="coll-features">
+              <span class="coll-feat"><i class="fas fa-check-circle"></i> Salons jardin</span>
+              <span class="coll-feat"><i class="fas fa-check-circle"></i> Tables extérieures</span>
+              <span class="coll-feat"><i class="fas fa-check-circle"></i> Chaises longues</span>
+            </div>
+            <a href="#cta-final" class="coll-btn">Demander un devis <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="section-inner">
+    <div class="story-grid">
+      <div class="story-visual-stack reveal-left">
+        <div class="story-card main">
+          <i class="fas fa-tree"></i>
+          <div class="story-card-label">La forêt de teck béninoise — source de toute notre création</div>
+          <div class="story-year-badge">
+            <span class="y">2006</span>
+            <span class="since">Depuis</span>
+          </div>
+        </div>
+        <div class="story-card accent">
+          <i class="fas fa-tools"></i>
+          <div class="story-card-label">Nos ateliers à Allada — où naît chaque pièce unique</div>
+        </div>
+      </div>
+      <div class="story-content reveal-right">
+        <div class="section-tag">Notre Histoire</div>
+        <h2 class="section-title">De l'arbre à votre <span class="italic">salon</span></h2>
+        <blockquote>
+          "J'ai fondé ATC-IB avec une conviction : le Bénin mérite des meubles qui témoignent de son excellence."
+        </blockquote>
+        <p>En 2006, dans les ateliers d'Allada, Monsieur Fadi Ali Hijazi pose la première bûche de teck béninois sur son établi. Il avait une vision : prouver que l'artisanat local pouvait rivaliser avec les plus grandes maisons mondiales.</p>
+        <p>Dix-huit ans plus tard, ATC-IB compte 5 galeries à travers le Bénin et des milliers de familles qui vivent entourées de nos créations. Chaque meuble part de l'arbre, sélectionné à la main, séché naturellement, transformé avec soin par nos artisans qui maîtrisent leur métier depuis des générations.</p>
+        <p>Ici, rien n'est industriel. Tout est humain, précis, durable. Quand vous achetez chez ATC-IB, vous n'achetez pas un meuble — vous adoptez une œuvre vivante.</p>
+        <div class="story-founder">
+          <div class="founder-avatar">F</div>
+          <div class="founder-info">
+            <div class="founder-name">Fadi Ali HIJAZI</div>
+            <div class="founder-role">Fondateur & Directeur Général, ATC-IB</div>
+          </div>
+          <div class="founder-sign">Fadi A.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section id="temoignages">
+  <div class="section-inner">
+    <div class="testi-header reveal">
+      <div class="section-tag">Témoignages</div>
+      <h2 class="section-title">Ils ont transformé <span class="italic">leur intérieur</span></h2>
+      <div class="stars">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        <span style="color:var(--gris);font-size:0.85rem;margin-left:8px;">4.9/5 — Plus de 500 familles satisfaites</span>
+      </div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-badge">Client vérifié</div>
+        <div class="testi-quote-icon"><i class="fas fa-quote-left"></i></div>
+        <p class="testi-text">Quand j'ai reçu mon bureau directorial en teck, mes associés ont cru que je l'avais importé d'Europe. La finition est absolument parfaite. 5 ans après, il est encore comme au premier jour. Un investissement qui a changé l'image de mon entreprise.</p>
+        <div class="testi-author">
+          <div class="testi-avatar a1">A</div>
+          <div>
+            <div class="testi-name">Aimé Kossou</div>
+            <div class="testi-city">Directeur d'entreprise, Cotonou</div>
+            <div class="testi-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:0.15s">
+        <div class="testi-badge">Client vérifié</div>
+        <div class="testi-quote-icon"><i class="fas fa-quote-left"></i></div>
+        <p class="testi-text">J'avais des doutes au départ — commander sur mesure me semblait risqué. Mais l'équipe m'a accompagnée à chaque étape. Ma chambre à coucher est aujourd'hui un rêve devenu réalité. Mes amies demandent toutes le contact d'ATC-IB !</p>
+        <div class="testi-author">
+          <div class="testi-avatar a2">M</div>
+          <div>
+            <div class="testi-name">Mariama Traoré</div>
+            <div class="testi-city">Architecte d'intérieur, Porto-Novo</div>
+            <div class="testi-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:0.3s">
+        <div class="testi-badge">Client vérifié</div>
+        <div class="testi-quote-icon"><i class="fas fa-quote-left"></i></div>
+        <p class="testi-text">Notre salon de jardin en teck a résisté à deux saisons des pluies et reste magnifique. Le bois a même pris une belle patine argentée. Nos soirées en famille ont un cadre digne d'un hôtel 5 étoiles. Merci M. Hijazi et toute l'équipe !</p>
+        <div class="testi-author">
+          <div class="testi-avatar a3">R</div>
+          <div>
+            <div class="testi-name">Robert & Céleste Agboton</div>
+            <div class="testi-city">Particuliers, Allada</div>
+            <div class="testi-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECK -->
+<section id="teck">
+  <div class="section-inner">
+    <div class="teck-grid">
+      <div class="reveal-left">
+        <div class="section-tag">Pourquoi le teck béninois ?</div>
+        <h2 class="section-title">Le bois le plus <span class="italic">précieux</span> d'Afrique de l'Ouest</h2>
+        <p style="color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:36px;">Le teck béninois est une ressource rare, cultivée dans des conditions climatiques idéales qui lui confèrent des propriétés exceptionnelles que peu de bois au monde peuvent égaler.</p>
+        <div class="teck-features">
+          <div class="teck-feat reveal">
+            <div class="teck-feat-icon"><i class="fas fa-shield-alt"></i></div>
+            <h4>Résistance naturelle</h4>
+            <p>Huiles naturelles qui repoussent l'eau, les insectes et la moisissure sans traitement chimique.</p>
+          </div>
+          <div class="teck-feat reveal" style="transition-delay:0.1s">
+            <div class="teck-feat-icon"><i class="fas fa-infinity"></i></div>
+            <h4>Durabilité exceptionnelle</h4>
+            <p>Un meuble en teck massif traversera facilement 50 à 80 ans. C'est un héritage que vous transmettez.</p>
+          </div>
+          <div class="teck-feat reveal" style="transition-delay:0.2s">
+            <div class="teck-feat-icon"><i class="fas fa-palette"></i></div>
+            <h4>Beauté qui évolue</h4>
+            <p>Le teck se bonifie avec le temps, développant une patine argentée-or d'une rare élégance.</p>
+          </div>
+          <div class="teck-feat reveal" style="transition-delay:0.3s">
+            <div class="teck-feat-icon"><i class="fas fa-leaf"></i></div>
+            <h4>100% local & durable</h4>
+            <p>Nos arbres proviennent de forêts gérées durablement au Bénin. Beauté qui respecte la planète.</p>
+          </div>
+        </div>
+      </div>
+      <div class="teck-visual reveal-right">
+        <div class="teck-big-num">18</div>
+        <div class="teck-claim">Années d'amour du bois béninois</div>
+        <div class="teck-sub">Chaque année, nous sélectionnons les meilleures essences, travaillons avec les meilleurs artisans, et livrons des meubles qui deviendront des légendes familiales.</div>
+        <div class="made-badge"><i class="fas fa-flag"></i> 100% Made in Bénin</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSUS -->
+<section id="processus">
+  <div class="section-inner">
+    <div class="process-header reveal">
+      <div class="section-tag">Comment ça fonctionne</div>
+      <h2 class="section-title">Votre meuble en <span class="italic">3 étapes simples</span></h2>
+      <p style="color:var(--gris);max-width:500px;margin:0 auto;font-size:1rem;line-height:1.7;">Nous avons simplifié le processus pour que commander votre meuble de rêve soit aussi simple que possible.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="process-num-wrap">
+          <div class="process-num">1</div>
+          <div class="process-ring"></div>
+        </div>
+        <div class="step-icon"><i class="fas fa-comments"></i></div>
+        <h3>Consultation gratuite</h3>
+        <p>Contactez-nous par WhatsApp, téléphone ou via le formulaire. Nous discutons de votre projet, vos dimensions, vos envies. Un devis détaillé et gratuit vous est remis sous 24h.</p>
+      </div>
+      <div class="process-step reveal" style="transition-delay:0.2s">
+        <div class="process-num-wrap">
+          <div class="process-num">2</div>
+          <div class="process-ring"></div>
+        </div>
+        <div class="step-icon"><i class="fas fa-pencil-ruler"></i></div>
+        <h3>Création sur mesure</h3>
+        <p>Nos artisans sélectionnent le teck, façonnent chaque pièce à la main selon vos spécifications exactes. Vous suivez l'avancement et validez chaque étape clé.</p>
+      </div>
+      <div class="process-step reveal" style="transition-delay:0.4s">
+        <div class="process-num-wrap">
+          <div class="process-num">3</div>
+          <div class="process-ring"></div>
+        </div>
+        <div class="step-icon"><i class="fas fa-truck"></i></div>
+        <h3>Livraison & Installation</h3>
+        <p>Votre meuble est livré et installé dans votre espace par notre équipe. Vous l'admirez, vous l'approuvez. Notre garantie satisfaction couvre toute imperfection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final">
+  <div class="section-inner" style="text-align:center;position:relative;z-index:1;">
+    <div class="cta-urgency-bar reveal">
+      <i class="fas fa-fire" style="color:#FF6B35;"></i>
+      Places limitées — Seulement 8 créneaux disponibles ce mois-ci
+    </div>
+    <div class="section-tag reveal">Commencez maintenant</div>
+    <h2 class="section-title reveal" style="color:var(--creme);">Votre intérieur exceptionnel<br><span class="italic">commence ici.</span></h2>
+    <p class="cta-lead reveal">Obtenez votre devis personnalisé entièrement gratuit. Notre équipe vous répond sous 24h et vous accompagne du premier échange à la livraison finale.</p>
+
+    <div class="contact-form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prénom & Nom</label>
+          <input type="text" placeholder="Aimé Kossou">
+        </div>
+        <div class="form-group">
+          <label>Téléphone (WhatsApp)</label>
+          <input type="tel" placeholder="+229 00 00 00 00">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Type de meuble souhaité</label>
+        <select>
+          <option value="">Sélectionnez une collection…</option>
+          <option>Chambre à coucher (lit, armoire, commode)</option>
+          <option>Bureau & mobilier professionnel</option>
+          <option>Salon de jardin / Outdoor</option>
+          <option>Salle à manger</option>
+          <option>Autre projet sur mesure</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Votre projet en quelques mots</label>
+        <textarea placeholder="Décrivez votre espace, vos dimensions approximatives, vos envies de style…"></textarea>
+      </div>
+      <button class="btn-primary" onclick="handleSubmit(event)" style="width:100%;justify-content:center;font-size:1rem;padding:18px;">
+        <i class="fas fa-paper-plane"></i> Obtenir mon devis gratuit maintenant
+      </button>
+      <div class="guarantee-note">
+        <i class="fas fa-lock"></i> Devis gratuit & sans engagement · Réponse garantie sous 24h · Satisfaction ou remboursement
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:center;gap:40px;margin-top:50px;flex-wrap:wrap;" class="reveal">
+      <div style="text-align:center;">
+        <div style="color:var(--or);font-size:2rem;font-family:'Playfair Display',serif;font-weight:900;">500+</div>
+        <div style="color:rgba(255,255,255,0.5);font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;">Clients satisfaits</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="color:var(--or);font-size:2rem;font-family:'Playfair Display',serif;font-weight:900;">18 ans</div>
+        <div style="color:rgba(255,255,255,0.5);font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;">D'expérience</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="color:var(--or);font-size:2rem;font-family:'Playfair Display',serif;font-weight:900;">5</div>
+        <div style="color:rgba(255,255,255,0.5);font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;">Galeries au Bénin</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="color:var(--or);font-size:2rem;font-family:'Playfair Display',serif;font-weight:900;">100%</div>
+        <div style="color:rgba(255,255,255,0.5);font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;">Made in Bénin</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="faq-header reveal">
+      <div class="section-tag">Questions fréquentes</div>
+      <h2 class="section-title">Tout ce que vous <span class="italic">voulez savoir</span></h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Quel est le délai de fabrication d'un meuble sur mesure ?
+          <i class="fas fa-plus faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          Le délai varie selon la complexité du projet : de 2 à 3 semaines pour un meuble simple, jusqu'à 6 semaines pour une chambre complète ou un projet d'envergure. Nous vous communiquons un délai précis lors du devis et nous le respectons scrupuleusement.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Puis-je visiter un atelier ou une galerie avant de commander ?
+          <i class="fas fa-plus faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          Absolument ! Nous vous y encourageons. Nos 5 galeries sont ouvertes à Zongo, Saint Michel, Akpakpa, Ciné Le Bénin et Allada. Vous pouvez toucher nos matériaux, voir nos réalisations en grandeur réelle et rencontrer nos artisans. Contactez-nous pour convenir d'un rendez-vous.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Comment fonctionne le paiement ? Y a-t-il un acompte ?
+          <i class="fas fa-plus faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          Nous demandons généralement un acompte de 50% à la validation de la commande, et le solde à la livraison. Nous acceptons Mobile Money (MTN, Moov), virement bancaire et espèces dans nos galeries. Des facilités de paiement peuvent être discutées pour les projets importants.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Le teck béninois est-il vraiment supérieur aux autres bois ?
+          <i class="fas fa-plus faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          Le teck est l'un des bois les plus recherchés au monde pour ses huiles naturelles qui le protègent de l'eau, des insectes et de la décomposition. Le teck béninois bénéficie d'un climat tropical idéal qui lui donne une densité et une résistance exceptionnelles. Un meuble bien entretenu peut durer plusieurs générations.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Quelle est votre politique de satisfaction et de garantie ?
+          <i class="fas fa-plus faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          Nous garantissons chaque meuble contre les défauts de fabrication. Si votre meuble ne correspond pas exactement à ce qui a été convenu, nous le corrigeons à nos frais. Notre objectif est votre satisfaction totale — c'est notre réputation depuis 18 ans qui en dépend.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Livrez-vous en dehors de Cotonou ?
+          <i class="fas fa-plus faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          Oui, nous livrons dans toutes les villes du Bénin. Des frais de livraison s'appliquent selon la distance et le volume. Pour des projets hors Bénin (Togo, Nigeria, région CEDEAO), contactez-nous directement pour un devis logistique.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#hero" class="nav-logo">ATC<span>-IB</span></a>
+      <p class="footer-desc">ATC-Industrie de Bois crée depuis 2006 des meubles sur mesure en teck béninois. Excellence, durabilité et élégance artisanale — au cœur du Bénin, pour le monde.</p>
+      <div class="social-links">
+        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Collections</h4>
+      <ul class="footer-links">
+        <li><a href="#collections">Chambre à coucher</a></li>
+        <li><a href="#collections">Bureau & Professionnel</a></li>
+        <li><a href="#collections">Jardin & Outdoor</a></li>
+        <li><a href="#collections">Salle à manger</a></li>
+        <li><a href="#collections">Sur commande spéciale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Nos Galeries</h4>
+      <ul class="footer-links">
+        <li><a href="#">Galerie Zongo</a></li>
+        <li><a href="#">Galerie Saint Michel</a></li>
+        <li><a href="#">Galerie Akpakpa</a></li>
+        <li><a href="#">Galerie Ciné Le Bénin</a></li>
+        <li><a href="#">Atelier Allada (siège)</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <div class="footer-contact-item">
+        <i class="fas fa-phone"></i>
+        <span>+229 90 00 90 89</span>
+      </div>
+      <div class="footer-contact-item">
+        <i class="fas fa-envelope"></i>
+        <span>info@atcbenin.com</span>
+      </div>
+      <div class="footer-contact-item">
+        <i class="fas fa-globe"></i>
+        <span>atc-ib.com</span>
+      </div>
+      <div class="footer-contact-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Allada, Bénin (siège principal)</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 ATC-Industrie de Bois. Tous droits réservés.</p>
+    <p>Fondée en 2006 par <a href="#">Fadi Ali HIJAZI</a> — Fait avec ❤️ au Bénin</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/22990009089" class="float-wa" target="_blank" title="Contactez-nous sur WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- SUCCESS MODAL -->
+<div id="modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;">
+  <div style="background:var(--creme);padding:48px;border-radius:4px;max-width:440px;width:90%;text-align:center;position:relative;">
+    <div style="font-size:3rem;color:var(--vert);margin-bottom:16px;"><i class="fas fa-check-circle"></i></div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--noir);margin-bottom:12px;">Demande envoyée !</h3>
+    <p style="color:var(--gris);line-height:1.7;margin-bottom:28px;">Notre équipe vous contacte dans les prochaines 24h. En attendant, n'hésitez pas à nous appeler ou écrire sur WhatsApp.</p>
+    <a href="https://wa.me/22990009089" class="btn-primary" style="display:inline-flex;margin-bottom:16px;">
+      <i class="fab fa-whatsapp"></i> Écrire sur WhatsApp
+    </a>
+    <br>
+    <button onclick="document.getElementById('modal').style.display='none'" style="background:none;border:none;color:var(--gris);cursor:pointer;font-size:0.85rem;text-decoration:underline;">Fermer</button>
+  </div>
+</div>
+
+<script>
+  // ── NAV SCROLL ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ── HAMBURGER ──
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navlinks').classList.toggle('open');
+  });
+
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+  // ── FAQ ──
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ── COUNTDOWN ──
+  function startCountdown() {
+    const stored = localStorage.getItem('atcib_countdown');
+    let end;
+    if (stored) {
+      end = parseInt(stored);
+    } else {
+      end = Date.now() + 24 * 60 * 60 * 1000; // 24h
+      localStorage.setItem('atcib_countdown', end);
+    }
+    const el = document.getElementById('countdown');
+    function update() {
+      const diff = end - Date.now();
+      if (diff <= 0) { el.textContent = '00:00:00'; return; }
+      const h = Math.floor(diff / 3600000).toString().padStart(2,'0');
+      const m = Math.floor((diff % 3600000) / 60000).toString().padStart(2,'0');
+      const s = Math.floor((diff % 60000) / 1000).toString().padStart(2,'0');
+      el.textContent = `${h}:${m}:${s}`;
+      requestAnimationFrame(update);
+    }
+    update();
+  }
+  startCountdown();
+
+  // ── FORM SUBMIT ──
+  function handleSubmit(e) {
+    e.preventDefault();
+    const modal = document.getElementById('modal');
+    modal.style.display = 'flex';
+  }
+
+  // ── SMOOTH CLOSE MODAL ──
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) this.style.display = 'none';
+  });
+</script>
+</body>
+</html>
