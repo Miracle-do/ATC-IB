@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATC-IB | Meubles Sur Mesure en Teck Béninois — Depuis 2006</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--bois:#8B5E3C;--bois-dark:#6B4226;--bois-light:#A97C50;--or:#C9A84C;--or-light:#E5C97A;--creme:#FAF3E0;--creme-dark:#F0E6C8;--vert:#2D5016;--vert-light:#3D6B20;--blanc:#FFFFFF;--noir:#1A1209;--gris:#6B6055}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Lato',sans-serif;background:var(--creme);color:var(--noir);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:18px 5%;background:rgba(26,18,9,0.93);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,168,76,0.25);transition:padding .4s}
+nav.scrolled{padding:11px 5%}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--or);letter-spacing:2px;text-decoration:none}
+.nav-logo span{color:#fff;font-weight:300}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover{color:var(--or)}
+.nav-cta{background:var(--or);color:var(--noir)!important;padding:10px 22px;border-radius:2px;font-weight:700!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{width:25px;height:2px;background:var(--or)}
+
+/* COUNTDOWN */
+.countdown-bar{background:var(--bois-dark);text-align:center;padding:11px 5%;color:var(--creme);font-size:.82rem;letter-spacing:.8px}
+.countdown-bar strong{color:var(--or)}
+#countdown{font-weight:700;color:var(--or-light)}
+
+/* HERO */
+#hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center}
+.hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1800&q=80');background-size:cover;background-position:center 30%}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,rgba(26,18,9,.9) 0%,rgba(26,18,9,.72) 55%,rgba(26,18,9,.4) 100%)}
+.hero-content{position:relative;z-index:2;padding:120px 5% 70px;max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.18);border:1px solid rgba(201,168,76,.5);padding:6px 16px;border-radius:50px;color:var(--or);font-size:.72rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:22px}
+.hero-headline{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4.5vw,3.9rem);font-weight:900;line-height:1.1;color:#fff;margin-bottom:22px}
+.hero-headline .accent{color:var(--or);display:block;font-style:italic}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,.72);line-height:1.75;margin-bottom:36px;font-weight:300}
+.hero-cta-group{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--or),var(--or-light));color:var(--noir);padding:15px 34px;border-radius:2px;font-weight:700;font-size:.92rem;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:all .3s;border:none;cursor:pointer;box-shadow:0 8px 28px rgba(201,168,76,.38)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(201,168,76,.55)}
+.btn-secondary{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.45);color:#fff;padding:15px 34px;border-radius:2px;font-size:.92rem;text-decoration:none;transition:all .3s}
+.btn-secondary:hover{border-color:var(--or);color:var(--or)}
+.hero-urgency{margin-top:26px;display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.5);font-size:.8rem}
+.dot{width:8px;height:8px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite;flex-shrink:0}
+
+/* Hero mosaic */
+.hero-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:220px 175px;gap:10px}
+.mosaic-img{border-radius:4px;overflow:hidden;position:relative;box-shadow:0 16px 48px rgba(0,0,0,.5)}
+.mosaic-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.mosaic-img:hover img{transform:scale(1.07)}
+.mosaic-img.tall{grid-row:1/3}
+.mosaic-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(26,18,9,.5) 0%,transparent 55%)}
+.mosaic-label{position:absolute;bottom:10px;left:12px;z-index:1;color:rgba(255,255,255,.9);font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase}
+
+/* TRUST */
+#trust{background:var(--bois-dark);padding:18px 5%;border-top:2px solid var(--or);border-bottom:2px solid var(--or)}
+.trust-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;align-items:center;gap:0;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:9px;color:var(--creme);font-size:.82rem;letter-spacing:1px;text-transform:uppercase;padding:7px 26px;font-weight:700}
+.trust-item i{color:var(--or)}
+.trust-divider{width:1px;height:28px;background:rgba(201,168,76,.3)}
+
+/* HELPERS */
+.section-inner{max-width:1200px;margin:0 auto}
+.section-tag{display:inline-block;color:var(--or);font-size:.72rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:14px}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.9rem);font-weight:700;line-height:1.2;color:var(--noir);margin-bottom:20px}
+.section-title .italic{font-style:italic;color:var(--bois)}
+.section-lead{font-size:1.05rem;color:var(--gris);line-height:1.8;max-width:580px;margin-bottom:46px}
+
+/* PROBLEM */
+#probleme{padding:96px 5%;background:var(--creme)}
+.pb-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.pb-list{display:flex;flex-direction:column;gap:18px}
+.pb-item{display:flex;align-items:flex-start;gap:14px;padding:18px;background:var(--blanc);border-left:4px solid var(--bois);border-radius:0 4px 4px 0;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.pb-item.solution{border-left-color:var(--vert)}
+.pb-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pb-icon.prob{background:rgba(139,94,60,.12);color:var(--bois)}
+.pb-icon.sol{background:rgba(45,80,22,.12);color:var(--vert)}
+.pb-text h4{font-family:'Playfair Display',serif;font-size:.98rem;margin-bottom:4px}
+.pb-text p{font-size:.86rem;color:var(--gris);line-height:1.6}
+.pb-photo{border-radius:4px;overflow:hidden;position:relative;height:480px;box-shadow:0 24px 64px rgba(0,0,0,.18)}
+.pb-photo img{width:100%;height:100%;object-fit:cover}
+.pb-photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,18,9,.75) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px}
+.pb-photo-text{font-family:'Playfair Display',serif;font-size:1.55rem;color:#fff;line-height:1.35}
+.pb-photo-text span{color:var(--or);font-style:italic}
+
+/* COLLECTIONS */
+#collections{padding:96px 5%;background:var(--noir)}
+#collections .section-title{color:var(--creme)}
+#collections .section-lead{color:rgba(255,255,255,.6)}
+.coll-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.coll-card{border-radius:4px;overflow:hidden;position:relative;cursor:pointer;transition:transform .4s}
+.coll-card:hover{transform:translateY(-8px)}
+.coll-photo{height:400px;overflow:hidden;position:relative}
+.coll-photo img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.coll-card:hover .coll-photo img{transform:scale(1.07)}
+.coll-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,6,3,.9) 0%,rgba(10,6,3,.15) 60%,transparent 100%)}
+.coll-content{position:absolute;bottom:0;left:0;right:0;padding:28px;z-index:2}
+.coll-tag{display:inline-block;background:var(--or);color:var(--noir);font-size:.62rem;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:1px;font-weight:700;margin-bottom:9px}
+.coll-title{font-family:'Playfair Display',serif;font-size:1.45rem;color:#fff;margin-bottom:7px}
+.coll-desc{font-size:.8rem;color:rgba(255,255,255,.62);line-height:1.55;margin-bottom:16px}
+.coll-features{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.coll-feat{font-size:.7rem;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:4px}
+.coll-feat i{color:var(--or)}
+.coll-btn{display:inline-flex;align-items:center;gap:8px;color:var(--or);font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;font-weight:700;transition:gap .3s}
+.coll-card:hover .coll-btn{gap:14px}
+
+/* STRIP */
+#gallery-strip{overflow:hidden;line-height:0}
+.strip-scroll{display:flex;animation:scrollStrip 32s linear infinite}
+.strip-scroll:hover{animation-play-state:paused}
+@keyframes scrollStrip{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.strip-img{height:255px;min-width:370px;overflow:hidden;flex-shrink:0}
+.strip-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s;filter:brightness(.85)}
+.strip-img:hover img{transform:scale(1.06);filter:brightness(1)}
+
+/* STORY */
+#story{padding:96px 5%;background:var(--creme-dark);position:relative;overflow:hidden}
+#story::before{content:'"';position:absolute;top:-60px;left:1%;font-family:'Playfair Display',serif;font-size:18rem;font-weight:900;color:rgba(139,94,60,.07);line-height:1;pointer-events:none}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.story-photo-stack{position:relative;height:540px}
+.sp-main{position:absolute;top:0;left:0;width:76%;height:400px;border-radius:4px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.22)}
+.sp-main img{width:100%;height:100%;object-fit:cover}
+.sp-accent{position:absolute;bottom:0;right:0;width:54%;height:230px;border-radius:4px;overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,.2);border:4px solid var(--creme-dark)}
+.sp-accent img{width:100%;height:100%;object-fit:cover}
+.sp-badge{position:absolute;top:-18px;right:-18px;width:88px;height:88px;border-radius:50%;background:var(--or);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(201,168,76,.4);z-index:3}
+.sp-badge .y{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:900;color:var(--noir);line-height:1}
+.sp-badge .since{font-size:.52rem;letter-spacing:1px;color:var(--bois-dark);text-transform:uppercase;font-weight:700}
+.story-content blockquote{font-family:'Playfair Display',serif;font-size:1.25rem;font-style:italic;color:var(--bois);border-left:3px solid var(--or);padding-left:22px;margin:26px 0;line-height:1.7}
+.story-content p{color:var(--gris);line-height:1.85;margin-bottom:16px;font-size:.97rem}
+.story-founder{display:flex;align-items:center;gap:16px;margin-top:32px;padding:18px;background:var(--blanc);border-radius:4px;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.founder-avatar{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#8B5E3C,#C9A84C);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;flex-shrink:0}
+.founder-name{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:700}
+.founder-role{font-size:.75rem;color:var(--gris);letter-spacing:1px;text-transform:uppercase}
+.founder-sign{font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--bois);margin-left:auto}
+
+/* TESTIMONIALS */
+#temoignages{padding:96px 5%;background:var(--blanc)}
+.testi-header{text-align:center;margin-bottom:56px}
+.stars{color:var(--or);font-size:1.05rem;margin-bottom:14px}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testi-card{background:var(--creme);padding:32px;border-radius:4px;border-bottom:3px solid var(--or);position:relative;box-shadow:0 4px 24px rgba(0,0,0,.07);transition:transform .3s,box-shadow .3s}
+.testi-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.12)}
+.testi-quote-icon{color:var(--or);font-size:1.8rem;margin-bottom:18px;opacity:.55}
+.testi-text{font-family:'Playfair Display',serif;font-style:italic;font-size:.97rem;color:var(--noir);line-height:1.75;margin-bottom:26px}
+.testi-author{display:flex;align-items:center;gap:13px}
+.testi-avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#fff;flex-shrink:0}
+.testi-avatar.a1{background:linear-gradient(135deg,#8B5E3C,#C9A84C)}
+.testi-avatar.a2{background:linear-gradient(135deg,#2D5016,#6B9B3A)}
+.testi-avatar.a3{background:linear-gradient(135deg,#6B4226,#8B5E3C)}
+.testi-name{font-weight:700;font-size:.9rem}
+.testi-city{font-size:.76rem;color:var(--gris)}
+.testi-stars{color:var(--or);font-size:.72rem}
+.testi-badge{position:absolute;top:18px;right:18px;background:rgba(201,168,76,.15);color:var(--or);font-size:.63rem;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:50px;font-weight:700}
+
+/* TECK */
+#teck{padding:96px 5%;background:linear-gradient(135deg,#2D5016 0%,#1A3008 100%);position:relative;overflow:hidden}
+#teck::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(60deg,transparent 0,transparent 20px,rgba(255,255,255,.015) 20px,rgba(255,255,255,.015) 21px)}
+#teck .section-title{color:var(--creme)}
+#teck .section-tag{color:var(--or-light)}
+.teck-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.teck-features{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+.teck-feat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);padding:22px;border-radius:4px;transition:background .3s}
+.teck-feat:hover{background:rgba(255,255,255,.12)}
+.teck-feat-icon{font-size:1.7rem;color:var(--or);margin-bottom:10px}
+.teck-feat h4{color:var(--creme);font-family:'Playfair Display',serif;font-size:.98rem;margin-bottom:5px}
+.teck-feat p{color:rgba(255,255,255,.52);font-size:.8rem;line-height:1.6}
+.teck-photo-stack{position:relative}
+.tp-main{border-radius:4px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.tp-main img{width:100%;height:360px;object-fit:cover}
+.tp-overlay{position:absolute;inset:0;border-radius:4px;background:linear-gradient(to top,rgba(26,18,9,.7) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:28px}
+.tp-claim{font-family:'Playfair Display',serif;font-size:1.6rem;color:#fff;line-height:1.35}
+.tp-claim span{color:var(--or);font-style:italic}
+.made-badge{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--or);color:var(--noir);padding:9px 18px;border-radius:2px;font-weight:700;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase}
+
+/* PROCESS */
+#processus{padding:96px 5%;background:var(--creme)}
+.process-header{text-align:center;margin-bottom:66px}
+.process-steps{display:grid;grid-template-columns:repeat(3,1fr);position:relative}
+.process-steps::before{content:'';position:absolute;top:52px;left:17%;right:17%;height:2px;background:linear-gradient(to right,var(--or),var(--bois),var(--or));z-index:0}
+.process-step{text-align:center;padding:0 28px}
+.process-num-wrap{position:relative;display:inline-flex;margin-bottom:24px;z-index:1}
+.process-num{width:66px;height:66px;border-radius:50%;background:linear-gradient(135deg,var(--bois),var(--bois-dark));color:#fff;font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(139,94,60,.4);position:relative;z-index:1}
+.process-ring{position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(201,168,76,.4)}
+.process-step h3{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:10px}
+.process-step p{font-size:.86rem;color:var(--gris);line-height:1.7}
+.process-step .step-icon{font-size:1.4rem;color:var(--or);margin-bottom:10px}
+.process-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+.process-photo{border-radius:4px;overflow:hidden;height:200px;position:relative}
+.process-photo img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.process-photo:hover img{transform:scale(1.06)}
+.process-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(26,18,9,.55) 0%,transparent 55%)}
+.process-photo-label{position:absolute;bottom:12px;left:14px;z-index:1;color:#fff;font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase}
+
+/* CTA FINAL */
+#cta-final{padding:96px 5%;background:linear-gradient(135deg,#1A1209,#2D1E0F,#1A1209);text-align:center;position:relative;overflow:hidden}
+.cta-bg-img{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1615873968403-89e068629265?w=1600&q=70');background-size:cover;background-position:center;opacity:.07}
+#cta-final .section-title{color:var(--creme)}
+#cta-final .section-tag{color:var(--or)}
+.cta-lead{font-size:1.05rem;color:rgba(255,255,255,.65);max-width:530px;margin:0 auto 44px;line-height:1.8}
+.cta-urgency-bar{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(201,168,76,.35);padding:9px 22px;border-radius:50px;margin-bottom:32px;color:var(--or);font-size:.8rem;letter-spacing:1px}
+.cta-urgency-bar i{color:#FF6B35;animation:pulse 1.5s infinite}
+.contact-form{max-width:560px;margin:0 auto;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:44px;position:relative;z-index:1}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;color:rgba(255,255,255,.55);font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:7px;font-weight:700}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:2px;padding:13px 15px;color:#fff;font-family:'Lato',sans-serif;font-size:.88rem;transition:border-color .3s;-webkit-appearance:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--or)}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,.28)}
+.form-group select option{background:#1A1209;color:var(--creme)}
+.form-group textarea{resize:vertical;min-height:95px}
+.guarantee-note{display:flex;align-items:center;justify-content:center;gap:8px;color:rgba(255,255,255,.4);font-size:.76rem;margin-top:18px}
+.guarantee-note i{color:var(--or)}
+
+/* FAQ */
+#faq{padding:96px 5%;background:var(--blanc)}
+.faq-header{text-align:center;margin-bottom:54px}
+.faq-grid{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:11px}
+.faq-item{border:1px solid rgba(139,94,60,.2);border-radius:4px;overflow:hidden;transition:border-color .3s}
+.faq-item.open{border-color:var(--or)}
+.faq-question{padding:20px 26px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-family:'Playfair Display',serif;font-size:.98rem;color:var(--noir);transition:background .3s}
+.faq-item.open .faq-question{background:rgba(139,94,60,.06)}
+.faq-question:hover{background:rgba(139,94,60,.04)}
+.faq-icon{color:var(--bois);transition:transform .3s;flex-shrink:0;margin-left:14px}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--or)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;padding:0 26px;color:var(--gris);font-size:.9rem;line-height:1.8}
+.faq-item.open .faq-answer{max-height:300px;padding:0 26px 20px}
+
+/* GALERIES */
+#galeries{padding:96px 5%;background:var(--creme-dark)}
+.galeries-header{text-align:center;margin-bottom:54px}
+.galeries-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.galerie-card{border-radius:4px;overflow:hidden;position:relative;cursor:pointer;transition:transform .3s}
+.galerie-card:hover{transform:translateY(-6px)}
+.galerie-card img{width:100%;height:190px;object-fit:cover;transition:transform .5s}
+.galerie-card:hover img{transform:scale(1.08)}
+.galerie-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,18,9,.82) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:14px}
+.galerie-name{font-family:'Playfair Display',serif;color:#fff;font-size:.9rem}
+.galerie-city{font-size:.68rem;color:rgba(255,255,255,.6);letter-spacing:1px;text-transform:uppercase}
+
+/* FOOTER */
+#footer{background:var(--noir);padding:66px 5% 28px}
+.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:46px;padding-bottom:46px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-brand .nav-logo{display:block;margin-bottom:16px;font-size:1.25rem}
+.footer-desc{color:rgba(255,255,255,.48);font-size:.86rem;line-height:1.7;margin-bottom:22px}
+.social-links{display:flex;gap:11px}
+.social-link{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);text-decoration:none;transition:all .3s}
+.social-link:hover{border-color:var(--or);color:var(--or)}
+.footer-col h4{font-family:'Playfair Display',serif;color:var(--creme);font-size:.93rem;margin-bottom:18px;padding-bottom:9px;border-bottom:1px solid rgba(201,168,76,.3)}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:9px}
+.footer-links a{color:rgba(255,255,255,.48);text-decoration:none;font-size:.83rem;transition:color .3s}
+.footer-links a:hover{color:var(--or)}
+.footer-contact-item{display:flex;align-items:flex-start;gap:9px;margin-bottom:13px}
+.footer-contact-item i{color:var(--or);font-size:.88rem;margin-top:2px;flex-shrink:0}
+.footer-contact-item span{color:rgba(255,255,255,.52);font-size:.8rem;line-height:1.5}
+.footer-bottom{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:10px}
+.footer-bottom p{color:rgba(255,255,255,.3);font-size:.76rem}
+.footer-bottom a{color:var(--or);text-decoration:none}
+
+/* FLOAT WA */
+.float-wa{position:fixed;bottom:28px;right:28px;z-index:999;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.45rem;text-decoration:none;box-shadow:0 8px 24px rgba(37,211,102,.4);animation:floatAnim 3s ease-in-out infinite}
+.float-wa:hover{transform:scale(1.12)!important;animation:none}
+@keyframes floatAnim{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* ANIMATIONS */
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-36px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(36px);transition:opacity .7s ease,transform .7s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero-content{grid-template-columns:1fr}
+  .hero-mosaic{max-width:500px;margin:30px auto 0}
+  .pb-grid,.story-grid,.teck-grid{grid-template-columns:1fr}
+  .pb-photo{height:320px}
+  .coll-grid{grid-template-columns:1fr 1fr}
+  .testi-grid{grid-template-columns:1fr 1fr}
+  .process-steps{grid-template-columns:1fr}
+  .process-steps::before{display:none}
+  .process-photos{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .galeries-grid{grid-template-columns:repeat(3,1fr)}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(26,18,9,.98);padding:20px 5%;border-top:1px solid rgba(201,168,76,.2)}
+  .hamburger{display:flex}
+  .coll-grid,.testi-grid{grid-template-columns:1fr}
+  .trust-inner{flex-direction:column;gap:6px}
+  .trust-divider{width:36px;height:1px}
+  .galeries-grid{grid-template-columns:1fr 1fr}
+  .hero-mosaic{display:none}
+  .hero-cta-group,.hero-urgency{justify-content:center}
+  .hero-text{text-align:center}
+  .hero-badge{margin:0 auto 22px}
+  .process-photos{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="countdown-bar">
+  🎯 Offre spéciale : <strong>-15% sur votre 1ère commande</strong> — Expire dans <span id="countdown">23:59:59</span>
+</div>
+
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">ATC<span>-IB</span></a>
+  <ul class="nav-links" id="navlinks">
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#story">Histoire</a></li>
+    <li><a href="#temoignages">Avis Clients</a></li>
+    <li><a href="#teck">Le Teck</a></li>
+    <li><a href="#galeries">Galeries</a></li>
+    <li><a href="#cta-final" class="nav-cta">Devis Gratuit</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge reveal"><i class="fas fa-leaf"></i> Artisanat béninois depuis 2006</div>
+      <h1 class="hero-headline reveal">
+        Votre intérieur mérite
+        <span class="accent">d'être exceptionnel.</span>
+      </h1>
+      <p class="hero-sub reveal">Des meubles sur mesure en teck 100% béninois, façonnés à la main par des artisans d'exception. Transformez chaque pièce en chef-d'œuvre unique.</p>
+      <div class="hero-cta-group reveal">
+        <a href="#cta-final" class="btn-primary"><i class="fas fa-pencil-ruler"></i> Obtenir mon devis gratuit</a>
+        <a href="#collections" class="btn-secondary"><i class="fas fa-eye"></i> Voir les collections</a>
+      </div>
+      <div class="hero-urgency reveal">
+        <span class="dot"></span>
+        12 commandes en cours — Places limitées pour livraison rapide
+      </div>
+    </div>
+    <div class="hero-mosaic reveal-right">
+      <div class="mosaic-img tall">
+        <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=80" alt="Chambre luxueuse bois teck" loading="eager">
+        <span class="mosaic-label">Chambre Prestige</span>
+      </div>
+      <div class="mosaic-img">
+        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&q=80" alt="Bureau en bois massif" loading="eager">
+        <span class="mosaic-label">Bureau</span>
+      </div>
+      <div class="mosaic-img">
+        <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=400&q=80" alt="Mobilier outdoor jardin teck" loading="eager">
+        <span class="mosaic-label">Outdoor</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div id="trust">
+  <div class="trust-inner">
+    <div class="trust-item"><i class="fas fa-award"></i> 18 ans d'expérience</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><i class="fas fa-store"></i> 5 galeries au Bénin</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><i class="fas fa-flag"></i> 100% Made in Bénin</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><i class="fas fa-ruler-combined"></i> 100% Sur mesure</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><i class="fas fa-shield-alt"></i> Satisfaction garantie</div>
+  </div>
+</div>
+
+<!-- ════════ PROBLÈME ════════ -->
+<section id="probleme">
+  <div class="section-inner">
+    <div class="pb-grid">
+      <div class="reveal-left">
+        <div class="section-tag">Le problème que vous ressentez</div>
+        <h2 class="section-title">Votre intérieur vous <span class="italic">laisse indifférent ?</span></h2>
+        <p class="section-lead">Vous rentrez chez vous et rien ne vous inspire. Vos meubles sont fonctionnels, mais sans âme. Vous méritez mieux.</p>
+        <div class="pb-list">
+          <div class="pb-item">
+            <div class="pb-icon prob"><i class="fas fa-times"></i></div>
+            <div class="pb-text"><h4>Meubles produits en masse, sans caractère</h4><p>Identiques à des milliers d'autres foyers. Aucune identité, aucune histoire.</p></div>
+          </div>
+          <div class="pb-item">
+            <div class="pb-icon prob"><i class="fas fa-times"></i></div>
+            <div class="pb-text"><h4>Dimensions inadaptées à votre espace</h4><p>Trop grand, trop petit — jamais exactement ce qu'il vous faut.</p></div>
+          </div>
+          <div class="pb-item">
+            <div class="pb-icon prob"><i class="fas fa-times"></i></div>
+            <div class="pb-text"><h4>Qualité qui se dégrade après 2 ans</h4><p>Vous rachetez, vous réparez. Un cycle épuisant et coûteux.</p></div>
+          </div>
+          <div class="pb-item solution">
+            <div class="pb-icon sol"><i class="fas fa-check"></i></div>
+            <div class="pb-text"><h4>ATC-IB crée votre meuble unique, pour la vie</h4><p>Sur mesure, en teck massif béninois — conçu pour durer des décennies.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="pb-photo reveal-right">
+        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80" alt="Intérieur luxueux bois naturel">
+        <div class="pb-photo-overlay">
+          <div class="pb-photo-text">Votre espace,<br><span>votre signature.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ COLLECTIONS ════════ -->
+<section id="collections">
+  <div class="section-inner">
+    <div class="reveal" style="margin-bottom:46px">
+      <div class="section-tag">Nos Collections</div>
+      <h2 class="section-title" style="color:var(--creme)">Des univers façonnés<br><span class="italic">pour vous</span></h2>
+      <p class="section-lead">Chaque collection naît d'une conversation avec vous. Vos envies, votre espace, votre style — notre savoir-faire.</p>
+    </div>
+    <div class="coll-grid">
+      <div class="coll-card reveal">
+        <div class="coll-photo">
+          <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=700&q=80" alt="Chambre à coucher luxueuse teck sur mesure">
+          <div class="coll-overlay"></div>
+        </div>
+        <div class="coll-content">
+          <div class="coll-tag">Collection Chambre</div>
+          <h3 class="coll-title">L'Intimité Royale</h3>
+          <p class="coll-desc">Têtes de lit sculptées, armoires enveloppantes, commodes raffinées. Votre chambre devient un sanctuaire de luxe.</p>
+          <div class="coll-features">
+            <span class="coll-feat"><i class="fas fa-check-circle"></i> Lits sur mesure</span>
+            <span class="coll-feat"><i class="fas fa-check-circle"></i> Armoires</span>
+            <span class="coll-feat"><i class="fas fa-check-circle"></i> Commodes</span>
+          </div>
+          <a href="#cta-final" class="coll-btn">Demander un devis <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="coll-card reveal" style="transition-delay:.15s">
+        <div class="coll-photo">
+          <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=700&q=80" alt="Bureau exécutif en bois massif sur mesure">
+          <div class="coll-overlay"></div>
+        </div>
+        <div class="coll-content">
+          <div class="coll-tag">Collection Bureau</div>
+          <h3 class="coll-title">L'Excellence Professionnelle</h3>
+          <p class="coll-desc">Bureaux directoriaux, bibliothèques imposantes, mobilier de réunion. Inspirez le respect à chaque regard.</p>
+          <div class="coll-features">
+            <span class="coll-feat"><i class="fas fa-check-circle"></i> Bureaux executive</span>
+            <span class="coll-feat"><i class="fas fa-check-circle"></i> Bibliothèques</span>
+            <span class="coll-feat"><i class="fas fa-check-circle"></i> Rangements</span>
+          </div>
+          <a href="#cta-final" class="coll-btn">Demander un devis <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="coll-card reveal" style="transition-delay:.3s">
+        <div class="coll-photo">
+          <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=700&q=80" alt="Mobilier outdoor jardin teck naturel">
+          <div class="coll-overlay"></div>
+        </div>
+        <div class="coll-content">
+          <div class="coll-tag">Collection Outdoor</div>
+          <h3 class="coll-title">La Nature Sublimée</h3>
+          <p class="coll-desc">Salons de jardin, pergolas, mobilier de piscine. Le teck résiste aux éléments et embellit avec le temps.</p>
+          <div class="coll-features">
+            <span class="coll-feat"><i class="fas fa-check-circle"></i> Salons jardin</span>
+            <span class="coll-feat"><i class="fas fa-check-circle"></i> Tables ext.</span>
+            <span class="coll-feat"><i class="fas fa-check-circle"></i> Chaises longues</span>
+          </div>
+          <a href="#cta-final" class="coll-btn">Demander un devis <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ GALLERY STRIP ════════ -->
+<div id="gallery-strip">
+  <div class="strip-scroll">
+    <div class="strip-img"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=75" alt="Salon meuble bois"></div>
+    <div class="strip-img"><img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=500&q=75" alt="Chambre teck"></div>
+    <div class="strip-img"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=500&q=75" alt="Bureau bois massif"></div>
+    <div class="strip-img"><img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=500&q=75" alt="Terrasse teck outdoor"></div>
+    <div class="strip-img"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&q=75" alt="Intérieur luxe bois"></div>
+    <div class="strip-img"><img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?w=500&q=75" alt="Canapé salon bois"></div>
+    <div class="strip-img"><img src="https://images.unsplash.com/photo-1615873968403-89e068629265?w=500&q=75" alt="Texture bois teck"></div>
+    <div class="strip-img"><img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=500&q=75" alt="Salle à manger bois"></div>
+    <!-- duplicate for seamless loop -->
+    <div class="strip-img"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=75" alt="Salon meuble bois"></div>
+    <div class="strip-img"><img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=500&q=75" alt="Chambre teck"></div>
+    <div class="strip-img"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=500&q=75" alt="Bureau bois massif"></div>
+    <div class="strip-img"><img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=500&q=75" alt="Terrasse teck outdoor"></div>
+    <div class="strip-img"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&q=75" alt="Intérieur luxe bois"></div>
+    <div class="strip-img"><img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?w=500&q=75" alt="Canapé salon bois"></div>
+    <div class="strip-img"><img src="https://images.unsplash.com/photo-1615873968403-89e068629265?w=500&q=75" alt="Texture bois teck"></div>
+    <div class="strip-img"><img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=500&q=75" alt="Salle à manger bois"></div>
+  </div>
+</div>
+
+<!-- ════════ STORY ════════ -->
+<section id="story">
+  <div class="section-inner">
+    <div class="story-grid">
+      <div class="story-photo-stack reveal-left">
+        <div class="sp-main">
+          <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=700&q=80" alt="Artisan menuisier travaillant le teck">
+        </div>
+        <div class="sp-accent">
+          <img src="https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?w=500&q=80" alt="Forêt tropicale plantation teck Bénin">
+        </div>
+        <div class="sp-badge"><span class="y">2006</span><span class="since">Depuis</span></div>
+      </div>
+      <div class="story-content reveal-right">
+        <div class="section-tag">Notre Histoire</div>
+        <h2 class="section-title">De l'arbre à votre <span class="italic">salon</span></h2>
+        <blockquote>"J'ai fondé ATC-IB avec une conviction : le Bénin mérite des meubles qui témoignent de son excellence."</blockquote>
+        <p>En 2006, dans les ateliers d'Allada, Monsieur Fadi Ali Hijazi pose la première bûche de teck béninois sur son établi. Il avait une vision : prouver que l'artisanat local pouvait rivaliser avec les plus grandes maisons mondiales.</p>
+        <p>Dix-huit ans plus tard, ATC-IB compte 5 galeries à travers le Bénin et des milliers de familles qui vivent entourées de nos créations. Chaque meuble part de l'arbre, sélectionné à la main, séché naturellement, transformé avec soin par nos artisans.</p>
+        <p>Ici, rien n'est industriel. Tout est humain, précis, durable. Quand vous achetez chez ATC-IB, vous adoptez une œuvre vivante.</p>
+        <div class="story-founder">
+          <div class="founder-avatar">F</div>
+          <div style="flex:1">
+            <div class="founder-name">Fadi Ali HIJAZI</div>
+            <div class="founder-role">Fondateur & Directeur Général, ATC-IB</div>
+          </div>
+          <div class="founder-sign">Fadi A.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ TÉMOIGNAGES ════════ -->
+<section id="temoignages">
+  <div class="section-inner">
+    <div class="testi-header reveal">
+      <div class="section-tag">Témoignages</div>
+      <h2 class="section-title">Ils ont transformé <span class="italic">leur intérieur</span></h2>
+      <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        <span style="color:var(--gris);font-size:.83rem;margin-left:8px">4.9/5 — Plus de 500 familles satisfaites</span>
+      </div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-badge">Client vérifié</div>
+        <div class="testi-quote-icon"><i class="fas fa-quote-left"></i></div>
+        <p class="testi-text">Quand j'ai reçu mon bureau directorial en teck, mes associés ont cru que je l'avais importé d'Europe. La finition est absolument parfaite. 5 ans après, il est encore comme au premier jour.</p>
+        <div class="testi-author">
+          <div class="testi-avatar a1">A</div>
+          <div>
+            <div class="testi-name">Aimé Kossou</div>
+            <div class="testi-city">Directeur d'entreprise, Cotonou</div>
+            <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:.15s">
+        <div class="testi-badge">Client vérifié</div>
+        <div class="testi-quote-icon"><i class="fas fa-quote-left"></i></div>
+        <p class="testi-text">J'avais des doutes au départ. Mais l'équipe m'a accompagnée à chaque étape. Ma chambre à coucher est aujourd'hui un rêve devenu réalité. Mes amies demandent toutes le contact d'ATC-IB !</p>
+        <div class="testi-author">
+          <div class="testi-avatar a2">M</div>
+          <div>
+            <div class="testi-name">Mariama Traoré</div>
+            <div class="testi-city">Architecte d'intérieur, Porto-Novo</div>
+            <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:.3s">
+        <div class="testi-badge">Client vérifié</div>
+        <div class="testi-quote-icon"><i class="fas fa-quote-left"></i></div>
+        <p class="testi-text">Notre salon de jardin en teck a résisté à deux saisons des pluies et reste magnifique. Nos soirées en famille ont un cadre digne d'un hôtel 5 étoiles. Merci à toute l'équipe ATC-IB !</p>
+        <div class="testi-author">
+          <div class="testi-avatar a3">R</div>
+          <div>
+            <div class="testi-name">Robert & Céleste Agboton</div>
+            <div class="testi-city">Particuliers, Allada</div>
+            <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ TECK ════════ -->
+<section id="teck">
+  <div class="section-inner">
+    <div class="teck-grid">
+      <div class="reveal-left">
+        <div class="section-tag">Pourquoi le teck béninois ?</div>
+        <h2 class="section-title">Le bois le plus <span class="italic">précieux</span><br>d'Afrique de l'Ouest</h2>
+        <p style="color:rgba(255,255,255,.6);line-height:1.8">Le teck béninois est une ressource rare, cultivée dans des conditions climatiques idéales qui lui confèrent des propriétés exceptionnelles.</p>
+        <div class="teck-features">
+          <div class="teck-feat reveal"><div class="teck-feat-icon"><i class="fas fa-shield-alt"></i></div><h4>Résistance naturelle</h4><p>Huiles naturelles repoussant l'eau, les insectes et la moisissure sans traitement chimique.</p></div>
+          <div class="teck-feat reveal" style="transition-delay:.1s"><div class="teck-feat-icon"><i class="fas fa-infinity"></i></div><h4>Durabilité 50+ ans</h4><p>Un héritage que vous transmettez à vos enfants et petits-enfants.</p></div>
+          <div class="teck-feat reveal" style="transition-delay:.2s"><div class="teck-feat-icon"><i class="fas fa-palette"></i></div><h4>Beauté qui évolue</h4><p>Le teck se bonifie avec le temps, développant une patine dorée d'une rare élégance.</p></div>
+          <div class="teck-feat reveal" style="transition-delay:.3s"><div class="teck-feat-icon"><i class="fas fa-leaf"></i></div><h4>100% local & durable</h4><p>Forêts gérées durablement au Bénin. Une beauté qui respecte la planète.</p></div>
+        </div>
+      </div>
+      <div class="teck-photo-stack reveal-right">
+        <div class="tp-main">
+          <img src="https://images.unsplash.com/photo-1615873968403-89e068629265?w=700&q=80" alt="Texture grain bois teck naturel massif">
+        </div>
+        <div class="tp-overlay">
+          <div class="tp-claim">Un bois qui raconte<br><span>votre histoire.</span></div>
+          <div class="made-badge"><i class="fas fa-flag"></i> 100% Made in Bénin</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ PROCESSUS ════════ -->
+<section id="processus">
+  <div class="section-inner">
+    <div class="process-header reveal">
+      <div class="section-tag">Comment ça fonctionne</div>
+      <h2 class="section-title">Votre meuble en <span class="italic">3 étapes simples</span></h2>
+      <p style="color:var(--gris);max-width:480px;margin:0 auto;font-size:.98rem;line-height:1.7">Un processus transparent, du premier échange à la livraison dans votre espace.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="process-num-wrap"><div class="process-num">1</div><div class="process-ring"></div></div>
+        <div class="step-icon"><i class="fas fa-comments"></i></div>
+        <h3>Consultation gratuite</h3>
+        <p>Contactez-nous par WhatsApp, téléphone ou formulaire. Devis détaillé remis sous 24h, sans engagement.</p>
+      </div>
+      <div class="process-step reveal" style="transition-delay:.2s">
+        <div class="process-num-wrap"><div class="process-num">2</div><div class="process-ring"></div></div>
+        <div class="step-icon"><i class="fas fa-pencil-ruler"></i></div>
+        <h3>Création sur mesure</h3>
+        <p>Nos artisans façonnent chaque pièce à la main selon vos spécifications. Vous validez chaque étape clé.</p>
+      </div>
+      <div class="process-step reveal" style="transition-delay:.4s">
+        <div class="process-num-wrap"><div class="process-num">3</div><div class="process-ring"></div></div>
+        <div class="step-icon"><i class="fas fa-truck"></i></div>
+        <h3>Livraison & Installation</h3>
+        <p>Notre équipe livre et installe votre meuble. Garantie satisfaction sur chaque imperfection.</p>
+      </div>
+    </div>
+    <div class="process-photos">
+      <div class="process-photo reveal">
+        <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&q=80" alt="Artisan fabrication meuble bois atelier">
+        <span class="process-photo-label">Fabrication artisanale</span>
+      </div>
+      <div class="process-photo reveal" style="transition-delay:.15s">
+        <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=600&q=80" alt="Finition et contrôle qualité meuble bois">
+        <span class="process-photo-label">Finition & contrôle qualité</span>
+      </div>
+      <div class="process-photo reveal" style="transition-delay:.3s">
+        <img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?w=600&q=80" alt="Installation meuble dans intérieur élégant">
+        <span class="process-photo-label">Livraison & installation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CTA FINAL ════════ -->
+<section id="cta-final">
+  <div class="cta-bg-img"></div>
+  <div class="section-inner" style="position:relative;z-index:1;text-align:center">
+    <div class="cta-urgency-bar reveal"><i class="fas fa-fire"></i> Places limitées — Seulement 8 créneaux disponibles ce mois-ci</div>
+    <div class="section-tag reveal">Commencez maintenant</div>
+    <h2 class="section-title reveal" style="color:var(--creme)">Votre intérieur exceptionnel<br><span class="italic">commence ici.</span></h2>
+    <p class="cta-lead reveal">Devis 100% gratuit. Notre équipe vous répond sous 24h et vous accompagne du premier échange à la livraison finale.</p>
+    <div class="contact-form reveal">
+      <div class="form-row">
+        <div class="form-group"><label>Prénom & Nom</label><input type="text" placeholder="Aimé Kossou"></div>
+        <div class="form-group"><label>Téléphone (WhatsApp)</label><input type="tel" placeholder="+229 00 00 00 00"></div>
+      </div>
+      <div class="form-group">
+        <label>Type de meuble souhaité</label>
+        <select>
+          <option value="">Sélectionnez une collection…</option>
+          <option>Chambre à coucher (lit, armoire, commode)</option>
+          <option>Bureau & mobilier professionnel</option>
+          <option>Salon de jardin / Outdoor</option>
+          <option>Salle à manger</option>
+          <option>Autre projet sur mesure</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Votre projet en quelques mots</label><textarea placeholder="Décrivez votre espace, dimensions approximatives, style souhaité…"></textarea></div>
+      <button class="btn-primary" onclick="handleSubmit(event)" style="width:100%;justify-content:center;font-size:.98rem;padding:17px">
+        <i class="fas fa-paper-plane"></i> Obtenir mon devis gratuit maintenant
+      </button>
+      <div class="guarantee-note"><i class="fas fa-lock"></i> Gratuit & sans engagement · Réponse sous 24h · Satisfaction garantie</div>
+    </div>
+    <div style="display:flex;justify-content:center;gap:40px;margin-top:48px;flex-wrap:wrap" class="reveal">
+      <div style="text-align:center"><div style="color:var(--or);font-size:2rem;font-family:'Playfair Display',serif;font-weight:900">500+</div><div style="color:rgba(255,255,255,.48);font-size:.78rem;letter-spacing:1px;text-transform:uppercase">Clients satisfaits</div></div>
+      <div style="text-align:center"><div style="color:var(--or);font-size:2rem;font-family:'Playfair Display',serif;font-weight:900">18 ans</div><div style="color:rgba(255,255,255,.48);font-size:.78rem;letter-spacing:1px;text-transform:uppercase">D'expérience</div></div>
+      <div style="text-align:center"><div style="color:var(--or);font-size:2rem;font-family:'Playfair Display',serif;font-weight:900">5</div><div style="color:rgba(255,255,255,.48);font-size:.78rem;letter-spacing:1px;text-transform:uppercase">Galeries</div></div>
+      <div style="text-align:center"><div style="color:var(--or);font-size:2rem;font-family:'Playfair Display',serif;font-weight:900">100%</div><div style="color:rgba(255,255,255,.48);font-size:.78rem;letter-spacing:1px;text-transform:uppercase">Made in Bénin</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FAQ ════════ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="faq-header reveal">
+      <div class="section-tag">Questions fréquentes</div>
+      <h2 class="section-title">Tout ce que vous <span class="italic">voulez savoir</span></h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Quel est le délai de fabrication d'un meuble sur mesure ?<i class="fas fa-plus faq-icon"></i></div><div class="faq-answer">2 à 3 semaines pour un meuble simple, jusqu'à 6 semaines pour une chambre complète. Délai précis communiqué lors du devis et toujours respecté.</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Puis-je visiter un atelier ou une galerie avant de commander ?<i class="fas fa-plus faq-icon"></i></div><div class="faq-answer">Absolument ! Nos 5 galeries sont ouvertes à Zongo, Saint Michel, Akpakpa, Ciné Le Bénin et Allada. Touchez nos matériaux, voyez nos réalisations en grandeur réelle.</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Comment fonctionne le paiement ?<i class="fas fa-plus faq-icon"></i></div><div class="faq-answer">Acompte de 50% à la validation, solde à la livraison. Mobile Money (MTN, Moov), virement bancaire et espèces acceptés.</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Le teck béninois est-il vraiment supérieur aux autres bois ?<i class="fas fa-plus faq-icon"></i></div><div class="faq-answer">Le teck est l'un des bois les plus recherchés au monde. Ses huiles naturelles le protègent de l'eau, des insectes et de la décomposition. Durée de vie : 50 à 80 ans.</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Quelle est votre politique de garantie ?<i class="fas fa-plus faq-icon"></i></div><div class="faq-answer">Garantie totale contre les défauts de fabrication. Si votre meuble ne correspond pas exactement à ce qui a été convenu, nous le corrigeons à nos frais.</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Livrez-vous en dehors de Cotonou ?<i class="fas fa-plus faq-icon"></i></div><div class="faq-answer">Oui, nous livrons dans toutes les villes du Bénin. Pour des projets hors Bénin (Togo, Nigeria, CEDEAO), contactez-nous pour un devis logistique personnalisé.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ GALERIES ════════ -->
+<section id="galeries">
+  <div class="section-inner">
+    <div class="galeries-header reveal">
+      <div class="section-tag">Nos showrooms</div>
+      <h2 class="section-title">5 Galeries <span class="italic">à votre service</span></h2>
+      <p style="color:var(--gris);max-width:480px;margin:0 auto;font-size:.98rem;line-height:1.7">Venez toucher, voir, sentir le teck. Nos équipes vous accueillent dans chacune de nos boutiques au Bénin.</p>
+    </div>
+    <div class="galeries-grid">
+      <div class="galerie-card reveal"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=75" alt="Galerie Zongo ATC-IB Cotonou"><div class="galerie-overlay"><div class="galerie-name">Galerie Zongo</div><div class="galerie-city">Cotonou</div></div></div>
+      <div class="galerie-card reveal" style="transition-delay:.1s"><img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?w=400&q=75" alt="Galerie Saint Michel ATC-IB Cotonou"><div class="galerie-overlay"><div class="galerie-name">Galerie Saint Michel</div><div class="galerie-city">Cotonou</div></div></div>
+      <div class="galerie-card reveal" style="transition-delay:.2s"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=75" alt="Galerie Akpakpa ATC-IB Cotonou"><div class="galerie-overlay"><div class="galerie-name">Galerie Akpakpa</div><div class="galerie-city">Cotonou</div></div></div>
+      <div class="galerie-card reveal" style="transition-delay:.3s"><img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=400&q=75" alt="Galerie Ciné Le Bénin ATC-IB Cotonou"><div class="galerie-overlay"><div class="galerie-name">Ciné Le Bénin</div><div class="galerie-city">Cotonou</div></div></div>
+      <div class="galerie-card reveal" style="transition-delay:.4s"><img src="https://images.unsplash.com/photo-1615873968403-89e068629265?w=400&q=75" alt="Atelier principal ATC-IB Allada Bénin"><div class="galerie-overlay"><div class="galerie-name">Atelier Allada</div><div class="galerie-city">Siège Principal</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer id="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#hero" class="nav-logo">ATC<span>-IB</span></a>
+      <p class="footer-desc">ATC-Industrie de Bois crée depuis 2006 des meubles sur mesure en teck béninois. Excellence, durabilité et élégance artisanale — au cœur du Bénin, pour le monde.</p>
+      <div class="social-links">
+        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/22990009089" class="social-link"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Collections</h4>
+      <ul class="footer-links">
+        <li><a href="#collections">Chambre à coucher</a></li>
+        <li><a href="#collections">Bureau & Professionnel</a></li>
+        <li><a href="#collections">Jardin & Outdoor</a></li>
+        <li><a href="#collections">Salle à manger</a></li>
+        <li><a href="#cta-final">Commande spéciale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Nos Galeries</h4>
+      <ul class="footer-links">
+        <li><a href="#galeries">Galerie Zongo</a></li>
+        <li><a href="#galeries">Galerie Saint Michel</a></li>
+        <li><a href="#galeries">Galerie Akpakpa</a></li>
+        <li><a href="#galeries">Galerie Ciné Le Bénin</a></li>
+        <li><a href="#galeries">Atelier Allada (siège)</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <div class="footer-contact-item"><i class="fas fa-phone"></i><span>+229 90 00 90 89</span></div>
+      <div class="footer-contact-item"><i class="fas fa-envelope"></i><span>info@atcbenin.com</span></div>
+      <div class="footer-contact-item"><i class="fas fa-globe"></i><span>atc-ib.com</span></div>
+      <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>Allada, Bénin (siège principal)</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 ATC-Industrie de Bois. Tous droits réservés.</p>
+    <p>Fondée en 2006 par <a href="#">Fadi Ali HIJAZI</a> — Fait avec ❤️ au Bénin</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/22990009089" class="float-wa" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+<div id="modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.75);align-items:center;justify-content:center">
+  <div style="background:var(--creme);padding:44px;border-radius:4px;max-width:420px;width:90%;text-align:center">
+    <div style="font-size:2.8rem;color:var(--vert);margin-bottom:14px"><i class="fas fa-check-circle"></i></div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.55rem;color:var(--noir);margin-bottom:10px">Demande envoyée !</h3>
+    <p style="color:var(--gris);line-height:1.7;margin-bottom:26px">Notre équipe vous contacte dans les 24h. Écrivez-nous aussi directement sur WhatsApp.</p>
+    <a href="https://wa.me/22990009089" class="btn-primary" style="display:inline-flex;margin-bottom:14px"><i class="fab fa-whatsapp"></i> Écrire sur WhatsApp</a><br>
+    <button onclick="document.getElementById('modal').style.display='none'" style="background:none;border:none;color:var(--gris);cursor:pointer;font-size:.83rem;text-decoration:underline;margin-top:6px">Fermer</button>
+  </div>
+</div>
+
+<script>
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
+document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('navlinks').classList.toggle('open'));
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.observe(el));
+
+function toggleFaq(el){const item=el.parentElement,isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!isOpen)item.classList.add('open')}
+
+function startCountdown(){let end;try{const s=localStorage.getItem('atcib_end');end=s?parseInt(s):Date.now()+23*3600000+59*60000+59000;if(!s)localStorage.setItem('atcib_end',end)}catch(e){end=Date.now()+23*3600000}
+const el=document.getElementById('countdown');function update(){const d=Math.max(0,end-Date.now());if(!d){el.textContent='00:00:00';return}el.textContent=`${String(Math.floor(d/3600000)).padStart(2,'0')}:${String(Math.floor((d%3600000)/60000)).padStart(2,'0')}:${String(Math.floor((d%60000)/1000)).padStart(2,'0')}`;requestAnimationFrame(update)}update()}
+startCountdown();
+
+function handleSubmit(e){e.preventDefault();document.getElementById('modal').style.display='flex'}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)this.style.display='none'});
+</script>
+</body>
+</html>
